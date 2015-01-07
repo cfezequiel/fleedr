@@ -1,12 +1,50 @@
 {% extends "layout.html" %}
 {% block body %}
-    <div><input type="text" name="search"></div>
-    <p>
-    {% for image in images %}
-        <img src="{{ image.url }}" alt="{{ image.title }}" style="width:304px;height:228px">
-        <div><a href=_like id="{{ image.id }}">Like</a></div>
-    {% else %}
-        <em>Unbelievable! No images! </em>
-    {% endfor %}
-    </p>
+<body>
+    <h1> Fleedr </h1>
+    <div>
+        <p>
+            <input type="text" name="search">
+            <button id="search" type="button">Search</button>
+        </p>
+    </div>
+    <div id="results">
+        {% for image in images %}
+        <div class="photo" id="{{ image.id }}">
+            <img src="{{ image.url }}" alt="{{ image.title }}">
+            <p align="left"><span class="like">Like</span></p>
+        </div>
+        {% else %}
+            <em>Unbelievable! No images! </em>
+        {% endfor %}
+    </div>
+    <script>
+        var search_images = function() {
+            $.getJSON($SCRIPT_ROOT + '/_search', 
+                { tags: $('input[name="search"]').val() }, 
+                function(data) {
+                    for (var i = 0; i < data.length; i++) {
+                        var d = data[i];
+                        var img = $('.photo#' + d.id + ' img');
+                        img.attr('src', d.url);
+                        img.attr('alt', d.title);
+                    }
+                });
+            return false;
+        }
+
+        $('#search').click(search_images);
+        $('.like').click(function() { 
+                if ($(this).html() == 'Like') {
+                    $(this).html('Unlike');
+                }
+                else if ($(this).html() == 'Unlike') {
+                    $(this).html('Like');
+                }
+                else {
+                    // do nothing
+                }
+        });
+    </script>
+</body>
 {% endblock %}
