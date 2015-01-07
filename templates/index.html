@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div><input type="text" name="search"></div>
+    <p>
+    {% for image in images %}
+        <img src="{{ image.url }}" alt="{{ image.title }}" style="width:304px;height:228px">
+        <div><a href=_like id="{{ image.id }}">Like</a></div>
+    {% else %}
+        <em>Unbelievable! No images! </em>
+    {% endfor %}
+    </p>
+{% endblock %}
