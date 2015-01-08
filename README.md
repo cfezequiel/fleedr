@@ -7,6 +7,9 @@ Built using Python Flask.
 
 - `fleedr.py`: Main server application
 - `flickr_util.py`: Contains utility methods for interacting with Flickr API
+- `/tests`: Test files
+    - `header.py`: Defines sys.path extensions for importing code-under-test
+    - `x_tests.py`: Test corresponding *x.py* code 
 - `/templates`: HTML templates (Jinja2 format)
     - `layout.html`: Top-level template extended in other templates
     - `index.html`: Front page template

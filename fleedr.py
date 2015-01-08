@@ -1,4 +1,3 @@
-# all the imports
 import requests
 import json
 import time
@@ -13,7 +12,6 @@ import flickr_util as fl
 app = Flask(__name__)
 app.debug = True
 app.config.from_object(__name__)
-#app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
 # URL methods
 @app.route('/')

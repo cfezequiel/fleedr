@@ -16,7 +16,6 @@ def get_public_feed(tags=None):
     url = URL_PUBLIC_FEED
     if tags:
         url = url_fix(url + '?tags=' + tags)
-    print url
     response = urllib2.urlopen(url)
     data = response.read()
     root = objectify.fromstring(data)
@@ -49,6 +48,7 @@ def get_public_feed(tags=None):
 
     return image_data
 
+# Quick test for checking data
 if __name__ == '__main__':
     image_data = get_public_feed()
     print image_data[0]
