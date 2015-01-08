@@ -18,6 +18,9 @@ def get_public_feed(tags=None):
         url = url_fix(url + '?tags=' + tags)
     response = urllib2.urlopen(url)
     data = response.read()
+
+    # Used XML instead of JSON response from Flickr since Flickr JSON
+    # escape format seems to be unsupported by Python json decoder 
     root = objectify.fromstring(data)
 
     # Parse data
